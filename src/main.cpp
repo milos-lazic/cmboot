@@ -5,7 +5,7 @@ extern "C" void SystemInit()
 
 int main()
 {
-    for(;;);
+    for(;;) {}
 
     return 0; // suppress compiler warnings
 }

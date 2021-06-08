@@ -13,14 +13,12 @@ add_executable(${_target}.elf)
 
 target_sources(${_target}.elf
     PRIVATE
-        # src/minimum.c
         src/main.cpp
         src/startup_ARMCM0.S
 )
 
 target_compile_options(${_target}.elf
     PRIVATE
-        # -std=c99
         -Wall
         --specs=nosys.specs
 )
@@ -30,4 +28,18 @@ target_link_options(${_target}.elf
         --specs=nosys.specs
         LINKER:-Map=${_target}.map
         LINKER:-T,${CMAKE_CURRENT_SOURCE_DIR}/gcc.ld
+)
+
+add_custom_command(TARGET ${_target}.elf
+    POST_BUILD
+    COMMAND ${CMAKE_OBJCOPY} ARGS -O ihex ${_target}.elf ${_target}.hex
+    COMMENT "Generating hex file..."
+    VERBATIM
+)
+
+add_custom_command(TARGET ${_target}.elf
+    POST_BUILD
+    COMMAND ${CMAKE_OBJCOPY} ARGS -O binary ${_target}.elf ${_target}.bin
+    COMMENT "Generating bin file..."
+    VERBATIM
 )

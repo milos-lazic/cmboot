@@ -7,8 +7,8 @@ set(CMAKE_SYSTEM_NAME      Generic)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 
 # Defines the compiler drivers to use.
-set(CMAKE_C_COMPILER  ${_toolchain_install_dir}/bin/arm-none-eabi-gcc)
-set(CMAK_CXX_COMPILER ${_toolchain_install_dir}/bin/arm-none-eabi-g++)
+set(CMAKE_C_COMPILER   ${_toolchain_install_dir}/bin/arm-none-eabi-gcc)
+set(CMAKE_CXX_COMPILER ${_toolchain_install_dir}/bin/arm-none-eabi-g++)
 
 # Tell CMake where to locate binaries, headers, and packages.
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
