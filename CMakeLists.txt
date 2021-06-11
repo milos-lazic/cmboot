@@ -14,7 +14,6 @@ add_executable(${_target}.elf)
 target_sources(${_target}.elf
     PRIVATE
         src/startup_ARMCM0.c
-        src/main.c
 )
 
 target_compile_options(${_target}.elf
@@ -28,9 +27,9 @@ target_compile_options(${_target}.elf
 target_link_options(${_target}.elf
     PRIVATE
         --specs=nosys.specs
+        LINKER:-gc-sections
         LINKER:-Map=${_target}.map
         LINKER:-T,${CMAKE_CURRENT_SOURCE_DIR}/nrf51_gcc.ld
-        LINKER:-gc-sections
 )
 
 add_custom_command(TARGET ${_target}.elf
