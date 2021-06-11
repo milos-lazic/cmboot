@@ -1,11 +1,11 @@
 #ifndef __NO_SYSTEM_INIT
-extern "C" void SystemInit()
+void SystemInit()
 {}
 #endif
 
 int main()
 {
-    for(;;) {}
+    for(;;);
 
     return 0; // suppress compiler warnings
 }
