@@ -31,6 +31,40 @@ extern void hardFaultHandler() __attribute__((weak, alias("defaultHandler")));
 extern void svCallHandler()    __attribute__((weak, alias("defaultHandler")));
 extern void pendSVHandler()    __attribute__((weak, alias("defaultHandler")));
 extern void sysTickHandler()   __attribute__((weak, alias("defaultHandler")));
+extern void irq0Handler()      __attribute__((weak, alias("defaultHandler")));
+extern void irq1Handler()      __attribute__((weak, alias("defaultHandler")));
+extern void irq2Handler()      __attribute__((weak, alias("defaultHandler")));
+extern void irq3Handler()      __attribute__((weak, alias("defaultHandler")));
+extern void irq4Handler()      __attribute__((weak, alias("defaultHandler")));
+extern void irq5Handler()      __attribute__((weak, alias("defaultHandler")));
+extern void irq6Handler()      __attribute__((weak, alias("defaultHandler")));
+extern void irq7Handler()      __attribute__((weak, alias("defaultHandler")));
+extern void irq8Handler()      __attribute__((weak, alias("defaultHandler")));
+extern void irq9Handler()      __attribute__((weak, alias("defaultHandler")));
+extern void irq10Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq11Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq12Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq13Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq14Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq15Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq16Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq17Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq18Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq19Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq20Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq21Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq22Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq23Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq24Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq25Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq26Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq27Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq28Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq29Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq30Handler()     __attribute__((weak, alias("defaultHandler")));
+extern void irq31Handler()     __attribute__((weak, alias("defaultHandler")));
+
+extern void systemInit() __attribute__((weak, alias("defaultSystemInit")));
 
 //----------------------------------------------------------------------------------
 /// @brief Interrupt vector table.
@@ -58,7 +92,48 @@ static const tExceptionHandler isrVectorTable[] __attribute__((section(".boot_is
     NULL,                           // Reserved
     pendSVHandler,                  // Pend SV Handler
     sysTickHandler,                 // SysTick Handler
+    // Interrupts (IRQs)
+    irq0Handler,                    // IRQ 0
+    irq1Handler,                    // IRQ 1
+    irq2Handler,                    // IRQ 2
+    irq3Handler,                    // IRQ 3
+    irq4Handler,                    // IRQ 4
+    irq5Handler,                    // IRQ 5
+    irq6Handler,                    // IRQ 6
+    irq7Handler,                    // IRQ 7
+    irq8Handler,                    // IRQ 8
+    irq9Handler,                    // IRQ 9
+    irq10Handler,                   // IRQ 10
+    irq11Handler,                   // IRQ 11
+    irq12Handler,                   // IRQ 12
+    irq13Handler,                   // IRQ 13
+    irq14Handler,                   // IRQ 14
+    irq15Handler,                   // IRQ 15
+    irq16Handler,                   // IRQ 16
+    irq17Handler,                   // IRQ 17
+    irq18Handler,                   // IRQ 18
+    irq19Handler,                   // IRQ 19
+    irq20Handler,                   // IRQ 20
+    irq21Handler,                   // IRQ 21
+    irq22Handler,                   // IRQ 22
+    irq23Handler,                   // IRQ 23
+    irq24Handler,                   // IRQ 24
+    irq25Handler,                   // IRQ 25
+    irq26Handler,                   // IRQ 26
+    irq27Handler,                   // IRQ 27
+    irq28Handler,                   // IRQ 28
+    irq29Handler,                   // IRQ 29
+    irq30Handler,                   // IRQ 30
+    irq31Handler                    // IRQ 31
 };
+
+//----------------------------------------------------------------------------------
+/// @brief Default system initialization routine.
+//
+static void defaultSystemInit()
+{
+
+}
 
 //----------------------------------------------------------------------------------
 /// @brief Default exception handler.
@@ -100,7 +175,8 @@ static void resetHandler()
         *dst = 0x00;
     }
 
-    // TODO: initialize system
+    // Initialize board.
+    systemInit();
 
     // TODO: call bootloader main function
 

@@ -14,6 +14,7 @@ add_executable(${_target}.elf)
 target_sources(${_target}.elf
     PRIVATE
         src/startup_ARMCM0.c
+        src/system_nrf51.c
 )
 
 target_compile_options(${_target}.elf
@@ -22,6 +23,12 @@ target_compile_options(${_target}.elf
         --specs=nosys.specs
         -ffunction-sections
         -fdata-sections
+)
+
+target_include_directories(${_target}.elf
+    PRIVATE
+        src
+        inc
 )
 
 target_link_options(${_target}.elf
