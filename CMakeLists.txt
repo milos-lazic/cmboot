@@ -14,7 +14,7 @@ add_executable(${_target}.elf)
 target_sources(${_target}.elf
     PRIVATE
         src/startup_ARMCM0.c
-        src/system_nrf51.c
+        src/NRF51/systemNrf51.c
 )
 
 target_compile_options(${_target}.elf

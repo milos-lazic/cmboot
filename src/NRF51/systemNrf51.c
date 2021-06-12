@@ -1,4 +1,4 @@
-#include "uart_nrf51.h"
+#include "uartNrf51.h"
 
 void systemInit()
 {

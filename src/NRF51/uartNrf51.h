@@ -4,10 +4,14 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif // __cplusplus
 
-typedef struct
+//-------------------------------------------------------------------
+/// @brief NRF51 UART peripheral register block.
+//
+typedef struct 
 {
     // Task register group
     uint32_t startRx;         // Start UART receiver                      (+0x000)
@@ -52,11 +56,16 @@ typedef struct
 
 } tNrf51UartRegisterBlock;
 
+/// @brief UART0 peripheral register block base address.
 #define NRF51_UART0_BASE_ADDR (0x40002000)
+
+/// @brief UART0 peripheral.
 #define NRF51_UART0           ((tNrf51UartRegisterBlock*)NRF51_UART0_BASE_ADDR)
+
+
 
 #ifdef __cplusplus
 }
-#endif //__cplusplus
+#endif // __cplusplus
 
-#endif
+#endif // UART_NRF51_H
