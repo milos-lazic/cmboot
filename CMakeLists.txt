@@ -36,7 +36,7 @@ target_link_options(${_target}.elf
         --specs=nosys.specs
         LINKER:-gc-sections
         LINKER:-Map=${_target}.map
-        LINKER:-T,${CMAKE_CURRENT_SOURCE_DIR}/nrf51_gcc.ld
+        LINKER:-T,${CMAKE_CURRENT_SOURCE_DIR}/nrf51_boot_gcc.ld
 )
 
 add_custom_command(TARGET ${_target}.elf

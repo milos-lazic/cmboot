@@ -63,7 +63,6 @@ typedef struct
 #define NRF51_UART0           ((tNrf51UartRegisterBlock*)NRF51_UART0_BASE_ADDR)
 
 
-
 #ifdef __cplusplus
 }
 #endif // __cplusplus

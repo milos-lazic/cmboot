@@ -74,7 +74,7 @@ extern void systemInit() __attribute__((weak, alias("defaultSystemInit")));
 ///          vector table is placed in a special ELF section which is fixed at
 ///          address 0x0000.0000 (start of addressable memory).
 //
-static const tExceptionHandler isrVectorTable[] __attribute__((section(".boot_isr_vector"))) =
+static const tExceptionHandler isrVectorTable[] __attribute__((section(".boot_isr_vector_table"))) =
 {
     (tExceptionHandler)&__StackTop, // Initial Stack Pointer
     resetHandler,                   // Reset Handler
