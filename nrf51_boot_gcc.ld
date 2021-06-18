@@ -5,7 +5,7 @@ __HEAP_SIZE__ = 0x2000; /* 8K */
 SECTIONS
 {
     .boot_text : {
-        KEEP(*(.global_isr_vector_table))
+        KEEP(*(.isr_vector_table))
         . = ALIGN(4);
         __boot_isr_vector_table_start = .;
         KEEP(*(.boot_isr_vector_table))
