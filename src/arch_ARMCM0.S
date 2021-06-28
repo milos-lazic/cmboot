@@ -2,19 +2,28 @@
     .arch   armv6-m
 
 @--------------------------------------
-    .text
+    .section .text
     .thumb
-    .global  arch_enableExceptions
+    .global  arch_enableInterrupts
 
-arch_enableExceptions:
+arch_enableInterrupts:
     cpsie i
     bx    lr
 
 @--------------------------------------
-    .text
+    .section .text
     .thumb
-    .global  arch_disableExceptions
+    .global  arch_disableInterrupts
 
-arch_disableExceptions:
+arch_disableInterrupts:
     cpsid i
     bx    lr
+
+@--------------------------------------
+    .section .text
+    .thumb
+    .global  arch_getIPSR
+
+arch_getIPSR:
+    mrs r0, ipsr
+    bx  lr

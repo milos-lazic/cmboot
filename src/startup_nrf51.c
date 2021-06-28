@@ -15,13 +15,14 @@ extern void* __boot_isr_vector_table_start;
 
 //-----------------------------------------------------------------------------
 /// @brief Local function declarations.
-static void reset_handler(void)           __attribute__((interrupt("IRQ")));
-static void irq_forward_handler(void)     __attribute__((interrupt("IRQ")));
+//
+static void reset_handler(void) __attribute__((interrupt("IRQ")));
+static void irq_forward_handler(void) __attribute__((interrupt("IRQ")));
 
 //-----------------------------------------------------------------------------
 /// @brief Virtual vector table offset register.
 //
-static void (**g_vtor)(void)              __attribute__((section(".pseudo_vtor")));
+static void (**g_vtor)(void) __attribute__((section(".pseudo_vtor")));
 
 //-----------------------------------------------------------------------------
 /// @brief Main interrupt service routine vector table.
@@ -96,8 +97,7 @@ static void reset_handler(void)
     const char* p_src;
     char*       p_dst;
 
-    // Disable interrupts
-    arch_disableExceptions();
+    arch_disableInterrupts();
 
     // Copy .data LMA initializers to .data VMA
     for (p_src = (const char*)&__etext, p_dst = (char*)&__data_start__;
@@ -119,8 +119,7 @@ static void reset_handler(void)
     // bootloader's ISR vector table.
     g_vtor = (void(**)(void))&__boot_isr_vector_table_start;
 
-    // Enable interrupts
-    arch_enableExceptions();
+    arch_enableInterrupts();
 
     // TODO: Jump to the bootloader
 
@@ -134,6 +133,6 @@ static void reset_handler(void)
 //
 static void irq_forward_handler(void)
 {
-    // TODO: for now
-    for (;;) {}
+    // Forward the interrupt request to the active vector table.
+    g_vtor[arch_getIPSR()]();
 }
